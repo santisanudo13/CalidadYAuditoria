@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="unican.es.quiniela.AjustesActivity">
+
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout_P1"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        >
+
+        <TextView
+            android:id="@+id/textView_Probabilidad_EquipoLocal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Probabilidad_EquipoLocal"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            />
+
+        <EditText
+            android:id="@+id/editText_Probabildiad_EquipoLocal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout_PX"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearLayout_P1"
+        android:layout_centerHorizontal="true"
+        >
+
+        <TextView
+            android:id="@+id/textView_Probabilidad_Empate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Probabilidad_Empate"
+            android:layout_below="@id/textView_Probabilidad_EquipoLocal"
+            android:inputType="numberDecimal"/>
+
+        />
+
+        <EditText
+            android:id="@+id/editText_Probabildiad_Empate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+             />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_Aceptar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearLayout_PX"
+        android:layout_centerInParent="true"
+        android:onClick="aceptarAjustes"
+        android:text="ACEPTAR"/>
+
+</RelativeLayout>

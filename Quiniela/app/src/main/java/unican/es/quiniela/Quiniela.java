@@ -1,10 +1,12 @@
 package unican.es.quiniela;
 
+import java.io.Serializable;
+
 /**
  * Clase para la generacion de quinielas aleatorias
  */
 
-public class Quiniela {
+public class Quiniela implements Serializable {
 
     //Atributos - probabilidades (1 a 14)
     private double p1;
