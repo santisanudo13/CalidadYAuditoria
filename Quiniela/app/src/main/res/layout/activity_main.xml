@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="unican.es.quiniela.MainActivity">
+
+    <TextView
+        android:id="@+id/textView_InfoMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/InfoMain"
+        android:layout_centerInParent="true"
+        android:lines="16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView_InfoMain"
+        android:layout_centerHorizontal="true"
+        >
+
+
+        <Button
+            android:id="@+id/button_Generar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="generaQuiniela"
+            android:text="GENERAR"/>
+        <Button
+            android:id="@+id/button_Limpiar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="limpiarQuiniela"
+            android:text="LIMPIAR"/>
+        <Button
+            android:id="@+id/button_Ajustes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AJUSTES"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

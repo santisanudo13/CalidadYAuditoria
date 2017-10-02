@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Quiniela</string>
+    <string name="InfoMain">Pulsa el boton "Generar" para crear una nueva Quiniela</string>
+</resources>
