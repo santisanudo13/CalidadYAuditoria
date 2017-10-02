@@ -22,41 +22,64 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Inicializamos objeto quiniela
-        quiniela = new Quiniela(0.6, 0.2, 0.1, 0.25, 0.25);
+        quiniela = new Quiniela(0.3, 0.3, 0.3, 0.3, 0.4);
         textView_InfoMain = (TextView) findViewById(R.id.textView_InfoMain);
         button_Generar = (Button) findViewById(R.id.button_Generar);
         button_Limpiar = (Button) findViewById(R.id.button_Limpiar);
         button_Ajustes = (Button) findViewById(R.id.button_Ajustes);
     }
 
+    /**
+     * Metodo que se ejecuta al pulsar el boton Generar, el cual calcula una quiniela aleatorio basandose
+     * en la probabilidad establecida en la clase quiniela
+     * @param view
+     */
     public void generaQuiniela(View view)
     {
         textView_InfoMain.setText(quiniela.dameQuiniela());
     }
+
+    /**
+     * Metodo que se ejecuta al pulsar el boton Limpiar y que se encarga de mostrar en pantalla el mensaje
+     * inicial igual que al inciar la App
+     * @param view
+     */
     public void limpiarQuiniela(View view)
     {
         textView_InfoMain.setText(R.string.InfoMain);
     }
 
+    /**
+     * Metodo que se encarga de ejecutar al pulsar el boton Ajustes, este genera una nueva activity y esta a la espera del resultado de esta
+     * @param view
+     */
     public void ajustes(View view)
     {
         Intent intent = new Intent (this, AjustesActivity.class);
         startActivityForResult(intent, AJUSTES_REQUEST);
     }
 
+    /**
+     * Este metodo se ejecuta cada vez que termina una actividad ejecutada a partir del metodo startActivityForResult()
+     * En este caso solo se ejecuta 1 vez con la activity de ajustes y comprobamos que los resultados son los correctos
+     * en base al mensaje de respuesta que dan al cerrarse dicha actividad, en nuestro casi la actividad solo puede cerrarse cuando la actividad
+     * ha finalizado con los valores correctos, por tanto en caso de que resultCode sea RESULT_OK variamos las probabilidades de la quiniela a los valores
+     * obtenidos de la actividad Ajustes
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // Check which request we're responding to
+        //Caso Actividad AJUSTES
         if (requestCode == AJUSTES_REQUEST)
         {
-            // Make sure the request was successful
+            //CASO CORRECTO
             if (resultCode == RESULT_OK)
             {
-                // The user picked a contact.
-                // The Intent's data Uri identifies which contact was selected.
-
-                // Do something with the contact here (bigger example below)
+                quiniela.setProbabilidades(data.getDoubleExtra("p1",0.0),data.getDoubleExtra("px",0.0));
             }
+            //CASO INCORRECTO, este caso nunca llega a darse ya que no esta implementado
             if(resultCode == RESULT_CANCELED)
             {
 

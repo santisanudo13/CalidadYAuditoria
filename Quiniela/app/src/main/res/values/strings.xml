@@ -3,5 +3,9 @@
     <string name="InfoMain">Pulsa el boton "Generar" para crear una nueva Quiniela</string>
     <string name="Probabilidad_EquipoLocal">P1: </string>
     <string name="Probabilidad_Empate">PX: </string>
+    <string name="errorCamposVacios">Alguno de los dos campos esta vacio</string>
+    <string name="errorP1PxMayor1">P1 + PX es mayor que 1</string>
+
+
 
 </resources>

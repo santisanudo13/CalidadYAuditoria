@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context="unican.es.quiniela.MainActivity">
 
+    <!-- Texto sobre el que se muestra por defecto un mensaje informativo y posteriormente la quiniela generada -->
     <TextView
         android:id="@+id/textView_InfoMain"
         android:layout_width="wrap_content"
@@ -19,35 +20,39 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
+    <!-- Bloque layout donde se agrupan los botones -->
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/textView_InfoMain"
         android:layout_centerHorizontal="true"
+        android:icon="@android:drawable/ic_menu_preferences"
         >
-
-
+        <!-- Boton generar quiniela -->
         <Button
             android:id="@+id/button_Generar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="generaQuiniela"
             android:text="GENERAR"/>
+
+        <!-- Boton Limpia datos-->
         <Button
             android:id="@+id/button_Limpiar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="limpiarQuiniela"
             android:text="LIMPIAR"/>
+
+        <!-- Boton Ajustes-->
         <Button
             android:id="@+id/button_Ajustes"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:drawableBottom="@android:drawable/ic_menu_preferences"
             android:onClick="ajustes"
             android:text="AJUSTES"/>
 
     </LinearLayout>
-
-
 </RelativeLayout>
