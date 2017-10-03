@@ -2,8 +2,8 @@ package unican.es.quiniela;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
@@ -40,31 +40,37 @@ public class MainActivity extends AppCompatActivity {
      */
     public void generaQuiniela(View view)
     {
+        textView_InfoMain.setText("");
         ArrayList<String> list = quiniela.dameQuiniela();
 
         for(int i = 0; i<list.size(); i++)
         {
             String line = list.get(i);
-            if(i <13 || i > 14)
-            switch (line){
-                case "1":
-                    appendColoredText(textView_InfoMain, line, Color.GREEN);
-                    break;
-                case "2":
-                    appendColoredText(textView_InfoMain, line, Color.RED);
-                    break;
-                case "X":
-                    appendColoredText(textView_InfoMain, line, Color.BLACK);
-                    break;
-            }
-
-            if(i == 13 || i == 14)
+            if(i == 13 )
             {
                 appendColoredText(textView_InfoMain, line, Color.BLACK);
+            }else{
+                if(i == 14 )
+                {
+                    appendColoredText(textView_InfoMain, line, Color.BLACK);
+                }else{
+                    switch (line){
+                        case "1":
+                            appendColoredText(textView_InfoMain, line, Color.GREEN);
+                            break;
+                        case "2":
+                            appendColoredText(textView_InfoMain, line, Color.RED);
+                            break;
+                        case "X":
+                            appendColoredText(textView_InfoMain, line, Color.BLACK);
+                            break;
+                        default:
+                            appendColoredText(textView_InfoMain, line, Color.BLACK);
+                            break;
+                    }
+                }
             }
         }
-
-
     }
 
 
