@@ -1,12 +1,16 @@
 package unican.es.quiniela;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -36,7 +40,41 @@ public class MainActivity extends AppCompatActivity {
      */
     public void generaQuiniela(View view)
     {
-        textView_InfoMain.setText(quiniela.dameQuiniela());
+        ArrayList<String> list = quiniela.dameQuiniela();
+
+        for(int i = 0; i<list.size(); i++)
+        {
+            String line = list.get(i);
+            if(i <13 || i > 14)
+            switch (line){
+                case "1":
+                    appendColoredText(textView_InfoMain, line, Color.GREEN);
+                    break;
+                case "2":
+                    appendColoredText(textView_InfoMain, line, Color.RED);
+                    break;
+                case "X":
+                    appendColoredText(textView_InfoMain, line, Color.BLACK);
+                    break;
+            }
+
+            if(i == 13 || i == 14)
+            {
+                appendColoredText(textView_InfoMain, line, Color.BLACK);
+            }
+        }
+
+
+    }
+
+
+    public static void appendColoredText(TextView tv, String text, int color) {
+        int start = tv.getText().length();
+        tv.append(text);
+        int end = tv.getText().length();
+        Spannable spannableText = (Spannable) tv.getText();
+        spannableText.setSpan(new ForegroundColorSpan(color), start, end, 0);
+        tv.append("\n");
     }
 
     /**

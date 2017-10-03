@@ -1,12 +1,13 @@
 package unican.es.quiniela;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Clase para la generacion de quinielas aleatorias
  */
 
-public class Quiniela implements Serializable {
+public class Quiniela   {
 
     //Atributos - probabilidades (1 a 14)
     private double p1;
@@ -36,30 +37,31 @@ public class Quiniela implements Serializable {
      * en los atributos
      * @return String que contiene el resultado de la quiniela
      */
-    public String dameQuiniela(){
-        String res="";
+    public ArrayList<String> dameQuiniela(){
+        ArrayList<String> listString = new ArrayList<String>();
+
         double a;
         for(int i=0; i<14; i++) {
             a = Math.random();
             if (a < p1)
-                res = res+"1\n";
+                listString.add("1");
             else if (a < p1 + px)
-                res = res+"2\n";
+                listString.add("2");
             else
-                res = res+"X\n";
+                listString.add("X");
         }
         for(int i=0; i<2; i++) {
             a = Math.random();
             if (a < pq0)
-                res = res + "0\n";
+                listString.add("0");
             else if (a < pq0 + pq1)
-                res = res + "1\n";
+                listString.add("1");
             else if (a < pq0 + pq1 + pq2)
-                res = res + "2\n";
+                listString.add("2");
             else
-                res = res + "M\n";
+                listString.add("M");
         }
-        return res;
+        return listString;
     }// dameQuiniela
 
 
