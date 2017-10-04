@@ -13,14 +13,12 @@
         >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
-
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
 
         <activity
             android:name=".AjustesActivity"
-            android:icon="@android:drawable/ic_menu_preferences"
             android:screenOrientation="portrait">
         </activity>
     </application>

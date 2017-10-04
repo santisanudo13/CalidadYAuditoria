@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.style.ForegroundColorSpan;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,9 +20,12 @@ public class MainActivity extends AppCompatActivity {
     static Quiniela quiniela;
     Button button_Generar, button_Limpiar, button_Ajustes;
     TextView textView_InfoMain;
-
     static final int AJUSTES_REQUEST = 1;
 
+    /**
+     * Constructor de la vista al generar actividad
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +40,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * Metodo encargado de generar el toolbar
+     * @param menu
+     * @return
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    /**
+     * Metodo encargado de determinar las acciones a realizar por los botones del toolbar
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.toolbar_ajustes:
+                Intent intent = new Intent (this, AjustesActivity.class);
+                startActivityForResult(intent, AJUSTES_REQUEST);
+                return(true);
+
+    }
+        return(super.onOptionsItemSelected(item));
+    }
+
+
+    /**
      * Metodo que se ejecuta al pulsar el boton Generar, el cual calcula una quiniela aleatorio basandose
      * en la probabilidad establecida en la clase quiniela
      * @param view
@@ -41,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     public void generaQuiniela(View view)
     {
         textView_InfoMain.setText("");
-        ArrayList<String> list = quiniela.dameQuiniela();
+       ArrayList<String> list = quiniela.dameQuiniela();
 
         for(int i = 0; i<list.size(); i++)
         {
@@ -71,9 +107,15 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+
     }
 
-
+    /**
+     * Metodo encargado de añadir al final del textView un String con el Color indicado
+     * @param tv
+     * @param text
+     * @param color
+     */
     public static void appendColoredText(TextView tv, String text, int color) {
         int start = tv.getText().length();
         tv.append(text);
