@@ -1,7 +1,7 @@
 package unican.es.quiniela;
 
-import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Clase para la generacion de quinielas aleatorias
@@ -37,8 +37,8 @@ public class Quiniela   {
      * en los atributos
      * @return String que contiene el resultado de la quiniela
      */
-    public ArrayList<String> dameQuiniela(){
-        ArrayList<String> listString = new ArrayList<String>();
+    public List<String> dameQuiniela(){
+        ArrayList<String> listString = new ArrayList<>();
 
         double a;
         for(int i=0; i<14; i++) {

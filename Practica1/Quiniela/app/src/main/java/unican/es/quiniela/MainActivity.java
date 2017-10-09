@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
@@ -12,14 +11,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-    static Quiniela quiniela;
-    Button button_Generar, button_Limpiar, button_Ajustes;
-    TextView textView_InfoMain;
+    Quiniela quiniela;
+    Button buttonGenerar;
+    Button buttonLimpiar;
+    Button buttonAjustes;
+    TextView textViewInfoMain;
     static final int AJUSTES_REQUEST = 1;
 
     /**
@@ -33,10 +36,10 @@ public class MainActivity extends AppCompatActivity {
 
         //Inicializamos objeto quiniela
         quiniela = new Quiniela(0.3, 0.3, 0.3, 0.3, 0.4);
-        textView_InfoMain = (TextView) findViewById(R.id.textView_InfoMain);
-        button_Generar = (Button) findViewById(R.id.button_Generar);
-        button_Limpiar = (Button) findViewById(R.id.button_Limpiar);
-        button_Ajustes = (Button) findViewById(R.id.button_Ajustes);
+        textViewInfoMain = (TextView) findViewById(R.id.textView_InfoMain);
+        buttonGenerar = (Button) findViewById(R.id.button_Generar);
+        buttonLimpiar = (Button) findViewById(R.id.button_Limpiar);
+        buttonAjustes = (Button) findViewById(R.id.button_Ajustes);
     }
 
     /**
@@ -58,13 +61,12 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
-            case R.id.toolbar_ajustes:
+        if(item.getItemId() == R.id.toolbar_ajustes)
+        {
                 Intent intent = new Intent (this, AjustesActivity.class);
                 startActivityForResult(intent, AJUSTES_REQUEST);
                 return(true);
-
-    }
+        }
         return(super.onOptionsItemSelected(item));
     }
 
@@ -76,38 +78,37 @@ public class MainActivity extends AppCompatActivity {
      */
     public void generaQuiniela(View view)
     {
-        textView_InfoMain.setText("");
-       ArrayList<String> list = quiniela.dameQuiniela();
+        textViewInfoMain.setText("");
+        List<String> list = quiniela.dameQuiniela();
 
         for(int i = 0; i<list.size(); i++)
         {
             String line = list.get(i);
             if(i == 13 )
             {
-                appendColoredText(textView_InfoMain, line, Color.BLACK);
+                appendColoredText(textViewInfoMain, line, Color.BLACK);
             }else{
                 if(i == 14 )
                 {
-                    appendColoredText(textView_InfoMain, line, Color.BLACK);
+                    appendColoredText(textViewInfoMain, line, Color.BLACK);
                 }else{
                     switch (line){
                         case "1":
-                            appendColoredText(textView_InfoMain, line, Color.GREEN);
+                            appendColoredText(textViewInfoMain, line, Color.GREEN);
                             break;
                         case "2":
-                            appendColoredText(textView_InfoMain, line, Color.RED);
+                            appendColoredText(textViewInfoMain, line, Color.RED);
                             break;
                         case "X":
-                            appendColoredText(textView_InfoMain, line, Color.BLACK);
+                            appendColoredText(textViewInfoMain, line, Color.BLACK);
                             break;
                         default:
-                            appendColoredText(textView_InfoMain, line, Color.BLACK);
+                            appendColoredText(textViewInfoMain, line, Color.BLACK);
                             break;
                     }
                 }
             }
         }
-
     }
 
     /**
@@ -116,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
      * @param text
      * @param color
      */
-    public static void appendColoredText(TextView tv, String text, int color) {
+    public void appendColoredText(TextView tv, String text, int color) {
         int start = tv.getText().length();
         tv.append(text);
         int end = tv.getText().length();
@@ -132,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void limpiarQuiniela(View view)
     {
-        textView_InfoMain.setText(R.string.InfoMain);
+        textViewInfoMain.setText(R.string.InfoMain);
     }
 
     /**
@@ -168,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
             //CASO INCORRECTO, este caso nunca llega a darse ya que no esta implementado
             if(resultCode == RESULT_CANCELED)
             {
-
+                Toast.makeText(this, (R.string.errorCasoIncorrecto), Toast.LENGTH_LONG).show();
             }
         }
     }

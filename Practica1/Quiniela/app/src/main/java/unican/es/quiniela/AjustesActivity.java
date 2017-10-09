@@ -6,18 +6,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.Toast;
-import android.content.Context;
 
 
 
 
 public class AjustesActivity extends AppCompatActivity {
-    EditText probabildiad_EquipoLocal, probabilidad_Empate;
-    Button  button_Aceptar;
+    EditText probabildiadEquipoLocal;
+    EditText probabilidadEmpate;
+    Button buttonAceptar;
 
-    //toast para notificar errores
-    Toast toastNotificacionErrores;
-    Context context;
 
 
 
@@ -26,9 +23,9 @@ public class AjustesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajustes);
 
-        probabildiad_EquipoLocal = (EditText) findViewById(R.id.editText_Probabildiad_EquipoLocal);
-        probabilidad_Empate = (EditText) findViewById(R.id.editText_Probabildiad_Empate);
-        button_Aceptar = (Button) findViewById(R.id.button_Aceptar);
+        probabildiadEquipoLocal = (EditText) findViewById(R.id.editText_Probabildiad_EquipoLocal);
+        probabilidadEmpate = (EditText) findViewById(R.id.editText_Probabildiad_Empate);
+        buttonAceptar = (Button) findViewById(R.id.button_Aceptar);
     }
 
 
@@ -40,24 +37,23 @@ public class AjustesActivity extends AppCompatActivity {
      */
     public void aceptarAjustes(View view)
     {
-        String str_p1 = probabildiad_EquipoLocal.getText().toString();
-        String str_px = probabilidad_Empate.getText().toString();
+        String strP1 = probabildiadEquipoLocal.getText().toString();
+        String strPx = probabilidadEmpate.getText().toString();
 
         //Caso campos vacios
-        if(str_p1.isEmpty() || str_px.isEmpty())
+        if(strP1.isEmpty() || strPx.isEmpty())
         {
-            context = getApplicationContext();
-            toastNotificacionErrores.makeText(context, (R.string.errorCamposVacios), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, (R.string.errorCamposVacios), Toast.LENGTH_LONG).show();
         }else{
-            Double p1, px;
-            p1 = Double.parseDouble(str_p1);
-            px = Double.parseDouble(str_px);
+            Double p1;
+            Double px;
+            p1 = Double.parseDouble(strP1);
+            px = Double.parseDouble(strPx);
 
             //Caso suma de ambos campos mayor que 1
             if(p1+px > 1 || p1+px < 0)
             {
-                context = getApplicationContext();
-                toastNotificacionErrores.makeText(context, (R.string.errorP1PxMayor1), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, (R.string.errorP1PxMayor1), Toast.LENGTH_LONG).show();
              //CASO EN EL QUE LOS PARAMETROS SON LOS CORRECTOS
             }else{
                 getIntent().putExtra("p1", p1);
