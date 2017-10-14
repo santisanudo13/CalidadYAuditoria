@@ -41,7 +41,7 @@ public class Quiniela   {
         ArrayList<String> listString = new ArrayList<>();
 
         double a;
-        for(int i=0; i<14; i++) {
+        for(int i=0; i<13; i++) {
             a = Math.random();
             if (a < p1)
                 listString.add("1");

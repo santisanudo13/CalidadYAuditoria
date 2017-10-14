@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by Tiago on 02/10/2017.
+ * Created by Tiago on 14/10/2017.
  */
 public class QuinielaTest {
     @Test
