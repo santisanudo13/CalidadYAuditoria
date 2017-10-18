@@ -1,0 +1,10 @@
+
+Osquid:S1068"5Remove this unused "dataCommunication" private field.(ªèöÕşÿÿÿÿ
+Dsquid:S1068"*Remove this unused "dialog" private field.(ÿ¢ÿÿÿÿÿ
+osquid:S1450"URemove the "dialog" field and declare it as a local variable in the relevant methods.(ÿ¢ÿÿÿÿÿ
+wsquid:S1450"bRemove the "listLineasPresenter" field and declare it as a local variable in the relevant methods.(ÀÌ¿Û
+esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(êÇ£ıÿÿÿÿ
+vsquid:S1488"\Immediately return this expression instead of assigning it to the temporary variable "view".(Æàşøÿÿÿÿ
+Lsquid:S1135"2Complete the task associated to this TODO comment.(¯±É÷ùÿÿÿÿ
+rsquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Äíÿÿÿÿÿ
+3squid:S2131"Use "Integer.toString" instead.(Æ“Ğ<

@@ -3,6 +3,8 @@ package es.unican.alejandro.tus_practica3.Presenter;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
+
 import java.util.List;
 
 import es.unican.alejandro.tus_practica3.Model.DataLoaders.ParserJSON;
@@ -27,10 +29,12 @@ public class ListLineasPresenter {
         this.context = context;
     }// ListLineasPresenter
 
-    public void start(){
+    public void start() {
         listLineasView.showProgress(true);
-        obtenLineas();
-        listLineasView.showList(getListaLineasBus());
+
+        new ObtenDatosServicio().execute();
+
+
         listLineasView.showProgress(false);
     }// start
 
@@ -77,5 +81,30 @@ public class ListLineasPresenter {
         }//if
         return textoLineas;
     }//getTextoLineas
+
+
+
+
+
+    public class ObtenDatosServicio extends AsyncTask<String, Void, Boolean> {
+        /** The system calls this to perform work in a worker thread and
+         * delivers it the parameters given to AsyncTask.execute() */
+        @Override
+        protected Boolean doInBackground(String ... urls) {
+            return obtenLineas();
+        }
+
+        /** The system calls this to perform work in the UI thread and delivers
+         * the result from doInBackground() */
+        @Override
+        protected void onPostExecute(Boolean result) {
+            if(result) {
+                listLineasView.showList(getListaLineasBus());
+            }else{
+                Toast.makeText(context, "No ha sido posible obtener los datos", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
 
 }// ListLineasPresenter
