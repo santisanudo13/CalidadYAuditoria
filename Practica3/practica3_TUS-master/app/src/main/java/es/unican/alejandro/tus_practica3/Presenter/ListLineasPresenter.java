@@ -35,7 +35,6 @@ public class ListLineasPresenter {
         new ObtenDatosServicio().execute();
 
 
-        listLineasView.showProgress(false);
     }// start
 
 
@@ -50,7 +49,7 @@ public class ListLineasPresenter {
         try {
             remoteFetchLineas.getJSON(RemoteFetch.URL_LINEAS_BUS);;
             listaLineasBus = ParserJSON.readArrayLineasBus(remoteFetchLineas.getBufferedData());
-            Log.d("ENTRA", "Obten gasolineras:"+listaLineasBus.size());
+            Log.d("ENTRA", "Obten paradas bus:"+listaLineasBus.size());
             return true;
         }catch(Exception e){
             Log.e("ERROR","Error en la obtención de las lineas de Bus: "+e.getMessage());
@@ -98,10 +97,13 @@ public class ListLineasPresenter {
          * the result from doInBackground() */
         @Override
         protected void onPostExecute(Boolean result) {
+            listLineasView.showProgress(false);
+
             if(result) {
                 listLineasView.showList(getListaLineasBus());
+                Toast.makeText(context, "Datos obtenidos con exito", Toast.LENGTH_SHORT).show();
             }else{
-                Toast.makeText(context, "No ha sido posible obtener los datos", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Fallo al obtener los datos", Toast.LENGTH_SHORT).show();
             }
         }
     }

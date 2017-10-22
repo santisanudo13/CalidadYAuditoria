@@ -55,7 +55,7 @@ public class ParserJSON{
             String n = reader.nextName();
             if (n.equals("ayto:numero")) {
                 numero = reader.nextString();
-            } else if (n.equals("dc:nombre")) {
+            } else if (n.equals("dc:name")) {
                 name = reader.nextString();
             } else if (n.equals("dc:identifier")) {
                 identifier = reader.nextInt();

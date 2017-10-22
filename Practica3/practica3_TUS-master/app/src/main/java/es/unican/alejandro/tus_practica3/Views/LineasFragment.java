@@ -2,6 +2,8 @@ package es.unican.alejandro.tus_practica3.Views;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -61,5 +63,49 @@ public class LineasFragment extends ListFragment implements IListLineasView {
     @Override
     public void showProgress (boolean state){
        //TODO se debe completar el método para que utilizando el atributo dialog nos muestre un progress dialog
+        if(state)
+        {
+
+            dialog.setMax(100);
+            dialog.setMessage("Cargando Datos");
+            dialog.setTitle("En Progreso");
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.show();
+
+
+            final Handler handle = new Handler() {
+                @Override
+                public void handleMessage(Message msg) {
+                    super.handleMessage(msg);
+                    dialog.incrementProgressBy(1);
+                }
+            };
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        while (dialog.getProgress() <= dialog
+                                .getMax()) {
+                            Thread.sleep(100);
+                            handle.sendMessage(handle.obtainMessage());
+                            if (dialog.getProgress() == dialog
+                                    .getMax()) {
+                                dialog.dismiss();
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+
+
+
+
+        }else{
+            if(dialog.isShowing())
+                dialog.dismiss();
+        }
     }
 }

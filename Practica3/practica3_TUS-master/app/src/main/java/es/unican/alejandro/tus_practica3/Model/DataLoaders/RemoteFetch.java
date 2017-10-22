@@ -49,6 +49,7 @@ public class RemoteFetch {
      * @return
      */
     public BufferedInputStream getBufferedData() {
+
         return bufferedData;
     }//getBufferedData
 
